@@ -28,7 +28,6 @@ def generate_npydataset_multi_ch(DataFolder='train',num_channels=4,root_dir='./d
                 np.save(target_dir+DataFolder+'/'+paths[0].split('/')[-2]+'.npy',npy_data)
     return 0            
 
-
 # generate_npydataset_multi_ch(DataFolder='train')
 # generate_npydataset_multi_ch(DataFolder='test')
 # generate_npydataset_multi_ch(DataFolder='eval')
@@ -85,6 +84,7 @@ def dataset_cutoff(dataset_dr,target_length=40):
                     
     print('dataset shape: ',np.array(new_dataset).shape,np.array(new_dataset_y).shape)
     return np.array(new_dataset),np.array(new_dataset_y)
+    
 new_test_dataset_x,new_test_dataset_y = dataset_cutoff('npy_data/test/')
 np.save('./data_set/test_x1.npy', new_test_dataset_x[:2800])
 np.save('./data_set/test_x2.npy', new_test_dataset_x[2800:])
@@ -176,7 +176,6 @@ ch =3
 new_test_dataset_x,new_test_dataset_y = dataset_cutoff_ch('npy_data/test/',use_channel=ch)
 np.save('./data_set_ch/test_x_ch'+str(ch)+'.npy', new_test_dataset_x)
 np.save('./data_set_ch/test_y_ch'+str(ch)+'.npy', new_test_dataset_y)
-
 
 new_train_dataset_x,new_train_dataset_y = dataset_cutoff_ch('npy_data/train/',use_channel=ch)
 np.save('./data_set_ch/train_x_ch'+str(ch)+'.npy', new_train_dataset_x)

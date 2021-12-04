@@ -25,20 +25,20 @@ with open(data_split_file) as f:
 
 train_file = data_split['train']
 eval_file = data_split['eval']
-test_file = data_split['test']
+#test_file = data_split['test']
 
-file_dir = './dsp_target/'#os.getcwd() # current dir path
+file_dir = './dsp/'#os.getcwd() # current dir path
 
 list_dir = os.listdir(file_dir) ## all folders
-dest = './data/'#os.path.join(cur_dir,'/path/leadingto/merge_1') 
+dest = './data/'#os.path.join(cur_dir,'/path/leadingto/merge_1')
 
 for sub_dir in list_dir:
     if sub_dir in train_file:
         dir_to_move = os.path.join(file_dir, sub_dir)
         shutil.move(dir_to_move, dest+'train/')
-    elif sub_dir in test_file:
-        dir_to_move = os.path.join(file_dir, sub_dir)
-        shutil.move(dir_to_move, dest+'test/')
+    # elif sub_dir in test_file:
+    #     dir_to_move = os.path.join(file_dir, sub_dir)
+    #     shutil.move(dir_to_move, dest+'test/')
     elif sub_dir in eval_file:
         dir_to_move = os.path.join(file_dir, sub_dir)
         shutil.move(dir_to_move, dest+'eval/')
@@ -57,7 +57,6 @@ def load_dataset():
         shuffle=True
     )
     return train_loader
-
 
 import os
 import glob

@@ -54,8 +54,6 @@ all_obj = train_obj + eval_obj
 # needed only for original file_half.json, shuffle anyway
 all_obj = shuffle(all_obj)
 
-
-
 # LOAD AND FLATTEN DATA
 begin = timeit.default_timer()
 
@@ -92,8 +90,8 @@ for index, smp in enumerate(all_obj):
                 nrow.append(random.randint(0, row-1))
 
     # In the future insert loop for computing all channels from here
-    file_ch = dir_path + '/' + gst + '/' + smp + '/' + dir_smp[use_channel]
-    sample = np.load(file_ch)
+    #file_ch = dir_path + '/' + gst + '/' + smp + '/' + dir_smp[use_channel]
+    #sample = np.load(file_ch)
 
     if do_cappixel:
         sample = sample[:,:til_pixel]
@@ -106,7 +104,7 @@ for index, smp in enumerate(all_obj):
             sample = sample[:row,:]
         elif row < til_frame:
             dif = til_frame - row
-            logger.info(f'{index}: {smp} \t- dif: {dif}')
+            print(f'{index}: {smp} \t- dif: {dif}')
             for gap in range(dif):
                 dup = nrow[gap]
                 # logger.info(f'dup: {dup}')
@@ -129,7 +127,6 @@ for index, smp in enumerate(all_obj):
 states = np.array(states) #145 384
 targets = np.array(targets)
 
-
 def unison_shuffled_copies(a, b):
     assert len(a) == len(b)
     p = np.random.permutation(len(a))
@@ -140,7 +137,6 @@ x_b, y_b  = unison_shuffled_copies(states,targets)
         
 seq_length = 40 ### of 145
 batch_size = 40
-
 
 n_test = int(np.shape(targets)[0]*0.2)
 n_train = np.shape(targets)[0]-n_test

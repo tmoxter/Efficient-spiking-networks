@@ -119,7 +119,6 @@ def output_Neuron(inputs, mem, tau_m, dt=1):
     mem = mem *alpha +  (1-alpha)*inputs
     return mem
 
-    
 class RNN_s(nn.Module):
     def __init__(self, sub_seq_length,criterion):
         super(RNN_s, self).__init__()
@@ -281,7 +280,7 @@ def train(model,loader,optimizer,scheduler=None,num_epochs=10):
     return acc_list
 
 
-num_epochs = 150
+num_epochs = 15
 sub_seq_length = 10
 criterion = nn.NLLLoss()#nn.CrossEntropyLoss()
 model = RNN_s(sub_seq_length=sub_seq_length,criterion=criterion)
